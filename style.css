@@ -1,0 +1,336 @@
+/* 超洗練されたライト/ダークモード対応CSS */
+:root {
+  /* --- ライトモード カラーパレット --- */
+  --bg-primary-light: #fdfdfd;
+  --bg-secondary-light: #ffffff;
+  --bg-accent-light: #f5f5f5;
+  --text-primary-light: #333333;
+  --text-secondary-light: #555555;
+  --border-light: #e0e0e0;
+  --accent-light: #4a90e2; /* 青系 */
+  --accent-hover-light: #357ab8;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-strong: rgba(0, 0, 0, 0.1);
+  --pinned-border-light: var(--accent-light);
+  --button-text-light: #ffffff; /* ライトモードの主要ボタンテキスト色 */
+  --dialog-button-text-light: #ffffff;
+}
+
+/* --- デフォルト（ライトモード）の変数を設定 --- */
+:root {
+  --bg-primary: var(--bg-primary-light);
+  --bg-secondary: var(--bg-secondary-light);
+  --bg-accent: var(--bg-accent-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --border: var(--border-light);
+  --accent: var(--accent-light);
+  --accent-hover: var(--accent-hover-light);
+  --shadow-light: var(--shadow-light);
+  --shadow-strong: var(--shadow-strong);
+  --pinned-border: var(--pinned-border-light);
+  --button-text: var(--button-text-light);
+  --dialog-button-text: var(--dialog-button-text-light);
+}
+
+/* --- ダークモード カラーパレット --- */
+body.dark-mode {
+  --bg-primary-dark: #22272e; /* GitHubダークモード風 */
+  --bg-secondary-dark: #2d333b;
+  --bg-accent-dark: #373e47;
+  --text-primary-dark: #cdd9e5; /* 明るいグレー */
+  --text-secondary-dark: #768390; /* グレー */
+  --border-dark: #444c56;
+  --accent-dark: #58a6ff; /* 明るい青 */
+  --accent-hover-dark: #79c0ff;
+  --shadow-light-dark: rgba(0, 0, 0, 0.2);
+  --shadow-strong-dark: rgba(0, 0, 0, 0.4);
+  --pinned-border-dark: var(--accent-dark);
+  --button-text-dark: #cdd9e5; /* ダークモードの主要ボタンテキスト色 */
+  --dialog-button-text-dark: #22272e; /* ダイアログ内ボタンは背景が明るい青なので濃い文字色 */
+
+  /* ダークモード時に変数を上書き */
+  --bg-primary: var(--bg-primary-dark);
+  --bg-secondary: var(--bg-secondary-dark);
+  --bg-accent: var(--bg-accent-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --border: var(--border-dark);
+  --accent: var(--accent-dark);
+  --accent-hover: var(--accent-hover-dark);
+  --shadow-light: var(--shadow-light-dark);
+  --shadow-strong: var(--shadow-strong-dark);
+  --pinned-border: var(--pinned-border-dark);
+  --button-text: var(--button-text-dark);
+  --dialog-button-text: var(--dialog-button-text-dark);
+}
+
+/* 全体 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* 色と背景色の変化をスムーズに */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* ヘッダー */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 4px var(--shadow-light);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+header h1 {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+/* ヘッダー内のボタン（インストールボタンなど） */
+header button#installBtn { /* ID指定を追加 */
+  background-color: var(--accent);
+  color: var(--button-text); /* ヘッダーボタンのテキスト色 */
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--shadow-light);
+  font-size: 0.9rem; /* サイズ調整 */
+}
+header button#installBtn:hover {
+   background-color: var(--accent-hover);
+   box-shadow: 0 3px 8px var(--shadow-strong);
+}
+
+
+/* コントロール群 */
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center; /* ラベルと要素の縦位置を揃える */
+}
+.controls input[type="text"] {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem; /* フォントサイズを明示 */
+}
+.controls label {
+    color: var(--text-secondary); /* ラベルの色 */
+}
+/* 主要な操作ボタン (+, 🆑, 🎨, 🗑️) */
+.controls button {
+  background-color: var(--accent);
+  color: var(--button-text); /* 変数を使用 */
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--shadow-light);
+  font-size: 1rem; /* ボタン内のアイコンや文字サイズ調整 */
+  line-height: 1; /* 絵文字ボタンの縦位置調整 */
+}
+.controls button:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 3px 8px var(--shadow-strong);
+}
+/* 全削除ボタンなど、少し目立たせたい場合 (オプション) */
+.controls button.clear-all {
+  /* background-color: #e74c3c; /* 例: 赤系 */
+  /* background-color: var(--accent); /* 他と同じにする場合 */
+}
+.controls button.clear-all:hover {
+  /* background-color: #c0392b; */
+  /* background-color: var(--accent-hover); */
+}
+
+/* フォルダー選択 */
+select#viewFolderSelect, /* ID指定を追加 */
+.dialog select { /* ダイアログ内のselectも同様に */
+  padding: 0.5rem 0.75rem; /* inputと高さを合わせる */
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem; /* フォントサイズを明示 */
+  line-height: 1.6; /* inputと合わせる */
+  height: calc(1rem * 1.6 + 0.5rem * 2 + 2px); /* inputの高さに合わせる計算 */
+  cursor: pointer;
+}
+
+
+/* メモ一覧 */
+#memoList .memo-item {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem; /* パディング調整 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px var(--shadow-light);
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+#memoList .memo-item.pinned {
+  /* border-leftを削除し、背景色で区別する方が見やすいかも */
+  /* border-left: 4px solid var(--pinned-border); */
+  background-color: var(--bg-accent); /* ピン留めはアクセント背景色 */
+}
+/* ダークモードでのピン留めアイテムの文字色調整 */
+body.dark-mode #memoList .memo-item.pinned {
+    color: var(--text-primary); /* 通常の文字色に戻す */
+}
+body.dark-mode #memoList .memo-item.pinned small {
+    color: var(--text-secondary); /* 通常のセカンダリ文字色に戻す */
+}
+
+.memo-item > div:first-child { /* タイトルと日付のコンテナ */
+    flex-grow: 1; /* スペースを埋める */
+    margin-right: 1rem; /* ボタンとの間隔 */
+}
+.memo-item strong {
+  font-size: 1.1rem;
+  color: var(--text-primary); /* 変数を使用 */
+  display: block; /* 念のためブロック要素に */
+  margin-bottom: 0.2rem; /* 日付との間隔 */
+}
+.memo-item small {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+/* メモアイテム内のボタン (ピン、削除) */
+.memo-item button {
+  background: none;
+  border: none;
+  font-size: 1.1rem; /* アイコンサイズ調整 */
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0.3rem; /* クリック範囲を少し広げる */
+  border-radius: 4px;
+  color: var(--text-secondary); /* ボタンの色を少し抑える */
+  line-height: 1;
+}
+.memo-item button:hover {
+    background-color: var(--bg-accent); /* ホバー時の背景 */
+    color: var(--accent); /* ホバー時のアイコン色 */
+}
+
+
+/* ダイアログ */
+.dialog {
+  background-color: var(--bg-secondary); /* 変数を使用 */
+  box-shadow: 0 4px 15px var(--shadow-strong); /* 影を少し強く */
+  border: 1px solid var(--border); /* ボーダー追加 */
+  /* display, positionなどは元のCSSにあるので省略 */
+  min-width: 350px; /* 少し幅を広げる */
+}
+.dialog .dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 要素間のスペースを少し広げる */
+}
+.dialog h2 {
+    margin-bottom: 0.5rem; /* タイトル下のスペース */
+    color: var(--text-primary);
+}
+.dialog label {
+    color: var(--text-secondary);
+    margin-right: 0.5rem;
+}
+.dialog input[type="text"],
+.dialog textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem; /* パディング調整 */
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--bg-primary); /* ダイアログ内の入力欄背景 */
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+.dialog textarea {
+    resize: vertical; /* 縦方向のリサイズのみ許可 */
+    min-height: 100px; /* 最小高さを設定 */
+}
+/* ダイアログ内のボタン (保存、閉じる、追加、キャンセル) */
+.dialog .dialog-content div:last-child { /* ボタンが配置されている最後のdiv */
+    display: flex;
+    justify-content: flex-end; /* 右寄せ */
+    gap: 0.5rem; /* ボタン間のスペース */
+}
+.dialog button {
+  background-color: var(--accent);
+  color: var(--dialog-button-text); /* 変数を使用 */
+  border: none;
+  padding: 0.6rem 1rem; /* パディング調整 */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.dialog button:hover {
+  background-color: var(--accent-hover);
+}
+/* キャンセルボタンなど、スタイルを変えたい場合 */
+.dialog button#cancelFolderBtn,
+.dialog button#closeMemoDialogBtn {
+  background-color: var(--bg-accent); /* 背景色を少し変える */
+  color: var(--text-secondary); /* 文字色を変える */
+  border: 1px solid var(--border);
+}
+.dialog button#cancelFolderBtn:hover,
+.dialog button#closeMemoDialogBtn:hover {
+  background-color: var(--border);
+  color: var(--text-primary);
+}
+
+
+/* オーバーレイ */
+.overlay {
+  position: fixed; /* 念のため再定義 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* ダークモードでもこのくらいで良いか */
+  z-index: 999; /* ダイアログより手前 */
+  display: none; /* 初期状態非表示 */
+}
+body.dark-mode .overlay {
+    background: rgba(0, 0, 0, 0.7); /* ダークモードでは少し濃く */
+}
+.overlay.show { /* 表示クラス */
+    display: block;
+}
+
+
+/* フッター */
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem; /* 上部にスペース */
+  border-top: 1px solid var(--border); /* 区切り線 */
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
