@@ -10,7 +10,7 @@ self.addEventListener('install', (event) => {
         '/index.html',
         '/src/style.css',
         '/src/script.js',
-        'https://cdn.glitch.global/0beb1435-08d5-4024-b147-709f785ede69/memoflow.png?v=1740701329166'
+        'https://pipocorp-japan.github.io/asset/memoflow.png?v=1740701329166'
       ]);
     })
   );

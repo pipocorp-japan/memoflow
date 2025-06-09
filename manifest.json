@@ -8,12 +8,12 @@
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "https://cdn.glitch.global/0beb1435-08d5-4024-b147-709f785ede69/memoflow.png?v=1740701329166",
+      "src": "https://pipocorp-japan.github.io/asset/memoflow.png?v=1740701329166",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://cdn.glitch.global/0beb1435-08d5-4024-b147-709f785ede69/memoflow.png?v=1740701329166",
+      "src": "https://pipocorp-japan.github.io/asset/memoflow.png?v=1740701329166",
       "sizes": "512x512",
       "type": "image/png"
     }
